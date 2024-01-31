@@ -1,0 +1,112 @@
+.menuTabDiv {
+  padding-top: 3.19rem;
+  padding-left: 3.5rem;
+  padding-right: 3.19rem;
+  background-color: white;
+  width: 15%;
+  height: 100vh;
+}
+.text {
+  font-style: normal;
+  line-height: normal;
+  margin: 0;
+}
+.MainHeading {
+  color: #030229;
+  font-family: "Nunito";
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-left: 0.94rem;
+}
+.primaryText {
+  color: #000;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: "Figtree";
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2rem;
+}
+.secondaryText {
+  color: #9a9aa9;
+  font-family: "Nunito";
+  font-size: 1rem;
+  font-weight: 600;
+}
+.tabIcon {
+  /* color: #9a9aa9; */
+  color: inherit;
+  font-size: 1.5rem;
+}
+.TabItem {
+  color: #9a9aa9;
+}
+.activeTabItem {
+  color: #605bff;
+}
+
+/* right part  */
+.rightDiv {
+  align-items: center;
+  background-color: #fafafb;
+  padding-left: 1.88rem;
+  padding-top: 3.12rem;
+  padding-right: 1.88rem;
+  width: 85%;
+  align-self: baseline;
+  height: 100vh;
+}
+.container {
+  max-width: 76.38rem;
+  width: 100%;
+}
+.profileHeader {
+  justify-content: space-between;
+}
+.Notification {
+  font-size: 1.5rem;
+}
+.avatarProfile {
+  border-radius: 40px;
+}
+.dropBoxBgContainer {
+  background-color: #ffffff;
+  box-shadow: #000;
+  border-radius: 8px;
+  padding: 1rem;
+  gap: 1.3rem;
+}
+.dropBox {
+  border-radius: 0.5rem;
+  border: 3px dashed #ebebeb;
+  width: 35.25rem;
+  height: 16.125rem;
+  justify-content: center;
+  align-items: center;
+}
+.dropBoxText {
+  color: #999ca0;
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: "Figtree";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.submitButton {
+  /* padding: 1rem 0rem 1rem 0; */
+  background-color: #605bff;
+  justify-content: center;
+  gap: 0.5rem;
+  color: white;
+  border-radius: 1rem;
+  height: 3.5rem;
+  font-family: "Figtree";
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.5rem;
+  cursor: pointer;
+}
