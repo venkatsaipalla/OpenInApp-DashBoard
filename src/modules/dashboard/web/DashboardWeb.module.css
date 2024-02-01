@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css');
 .menuTabDiv {
   padding-top: 3.19rem;
-  padding-left: 3.5rem;
+
   padding-right: 3.19rem;
   background-color: white;
   width: 15%;
@@ -40,9 +41,12 @@
 .TabItem {
   color: #9a9aa9;
   cursor: pointer;
+  padding-left: 1.93rem; 
+  height: 3rem;
 }
 .TabItem:hover {
   color: #605bff;
+  background: linear-gradient(90deg, #aca9ff 0%, rgba(172, 169, 255, 0) 91.25%);
 }
 .activeTabItem {
   color: #605bff;
@@ -226,6 +230,6 @@
   color: white;
   font-size: 1rem;
 }
-.rough{
+.rough {
   min-width: 7rem;
 }
