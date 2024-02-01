@@ -1,6 +1,9 @@
 .bgContainer {
   background-color: #fafafb;
-  height: 100vh;
+  /* height: 100vh; */
+  height: 100%;
+  /* justify-content: center; */
+  align-items: center;
 }
 .container {
   max-width: 20.5rem;
@@ -10,6 +13,8 @@
   background-color: white;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .profileHeader {
   gap: 1rem;
@@ -22,12 +27,229 @@
   letter-spacing: 0em;
   text-align: left;
 }
-.menuIcon{
-    font-size: 1.7rem;
+.menuIcon {
+  font-size: 1.7rem;
+  cursor: pointer;
 }
 .bellIcon {
- font-size: 1.5rem;
+  font-size: 1.2rem;
 }
-.avatarProfile{
-    border-radius: 40px;
+.avatarProfile {
+  border-radius: 40px;
+}
+.primaryText {
+  font-family: "Nunito";
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin: 0;
+}
+.secondaryText {
+  font-family: "Figtree";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #999ca0;
+  margin: 0;
+}
+.dropBoxBgContainer {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  /* min-height: 22rem; */
+  /* width: 100%; */
+  gap: 1rem;
+}
+.dropBox {
+  border-radius: 0.5rem;
+  border: 3px dashed #ebebeb;
+  height: 16rem;
+  justify-content: center;
+  align-items: center;
+}
+.dropBoxText {
+  color: #999ca0;
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: "Figtree";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.submitButton {
+  /* padding: 1rem 0rem 1rem 0; */
+  background-color: #605bff;
+  justify-content: center;
+  gap: 0.5rem;
+  color: white;
+  border-radius: 0.5rem;
+  /* height: 3.5rem; */
+  font-family: "Figtree";
+  font-style: normal;
+  cursor: pointer;
+  /* added */
+  display: flex;
+  align-items: center;
+  border: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.UploadedItemsContainer {
+  gap: 3rem;
+}
+.UploadItemsDiv {
+  overflow-x: scroll;
+  background-color: #f7f3f3;
+  border-radius: 0.5rem;
+  /* gap: 2rem; */
+  /* border: 2px solid red; */
+  width: auto;
+  padding: 14px 24px 14px 24px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0);
+}
+.columnTitle {
+  white-space: nowrap;
+  font-family: "Figtree";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: left;
+  /* margin: 0; */
+}
+
+.orderList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  /* margin: 0; */
+  /* margin-left: 0 !important; */
+  padding: 0;
+  /* width: 100%; */
+}
+.listItem {
+  border: 1px solid red;
+  display: flex;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 0rem 1rem 0rem 1rem;
+  /* justify-content: space-between; */
+  gap: 2rem;
+  /* width: fi; */
+  width: fit-content;
+  align-items: center;
+  height: 2.8rem;
+  margin-right: 1rem;
+}
+.listItemText {
+  font-family: "Figtree";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+.custom_select_Div {
+  /* width: 1rem; */
+  /* height: 2rem; */
+  /* padding: 0.75rem;*/
+  /* border-radius: 8px; */
+  /* border: 1px solid #d2cece; */
+  /* gap: 8px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff; */
+}
+.selectTag {
+  /* height: 2rem; */
+  width: 5.5rem;
+  /* height: 2rem; */
+  padding: 0.5rem 0 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #d2cece;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding-left: 12px;
+  outline: none;
+  cursor: pointer;
+}
+.selectedTagDiv {
+  min-width: 35%;
+  gap: 0.5rem;
+}
+.selectedTags {
+  /* width: 60px; */
+  /* height: 24px; */
+  padding: 4px 4px 4px 8px;
+  border-radius: 4px;
+  gap: 7px;
+  background-color: #605bff;
+  white-space: nowrap;
+}
+.selectTagText {
+  margin: 0;
+  font-family: "Figtree";
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: white;
+}
+.cross {
+  color: white;
+  font-size: 1rem;
+}
+
+/* menu drawer */
+.drawerContainer1 {
+  align-items: flex-start;
+}
+.drawerContainer2 {
+  border: 1px solid red;
+}
+.drawerHeader {
+  justify-content: space-between;
+  /* padding-left: ; */
+  width: 83%;
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
+  padding-top: 1rem;
+}
+.tabIcon {
+  color: inherit;
+  font-size: 1.3rem;
+}
+.menuTabDiv {
+  /* width: 100%; */
+  /* border: 2px solid red; */
+  color: #999ca0;
+  padding-left: 2.06rem;
+  gap: 0.875rem;
+  align-items: center;
+  height: 2.87rem;
+}
+.menuTabDiv:hover {
+  /* width: 100%; */
+  /* border: 2px solid red; */
+  background: linear-gradient(90deg, #aca9ff 0%, rgba(172, 169, 255, 0) 91.25%);
+  color: #605bff;
+}
+.activeTabDiv {
+  background: linear-gradient(90deg, #aca9ff 0%, rgba(172, 169, 255, 0) 91.25%);
+  color: #605bff;
 }

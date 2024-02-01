@@ -53,7 +53,7 @@
   padding-left: 1.88rem;
   padding-top: 3.12rem;
   padding-right: 1.88rem;
-  width: 85%;
+  width: -webkit-fill-available;
   align-self: baseline;
   height: 100vh;
 }
@@ -76,6 +76,7 @@
   border-radius: 8px;
   padding: 1rem;
   gap: 1.3rem;
+  /* width: 90%; */
 }
 .dropBox {
   border-radius: 0.5rem;
@@ -115,7 +116,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  margin-top: 1.5rem;
+  /* margin-top: 1.5rem; */
   border: 0;
 }
 .UploadedItemsContainer {
@@ -192,6 +193,7 @@
   background-color: #ffffff;
   padding-left: 12px;
   outline: none;
+  cursor: pointer;
 }
 .selectedTagDiv {
   min-width: 35%;
@@ -204,6 +206,7 @@
   border-radius: 4px;
   gap: 7px;
   background-color: #605bff;
+  white-space: nowrap;
 }
 .selectTagText {
   margin: 0;
