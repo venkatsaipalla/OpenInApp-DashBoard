@@ -232,7 +232,7 @@ export default function DashboardMobile() {
         <CVFlex
           className={`${DashboardMobileStyles.container} ${DashboardMobileStyles.UploadItemsDiv}`}
         >
-          <CHFlex sx={{ gap: "4rem" }}>
+          <CHFlex sx={{ gap: "5.5rem" }}>
             <p className={`${DashboardMobileStyles.columnTitle}`}>SI No.</p>
             <p className={`${DashboardMobileStyles.columnTitle}`}>Links</p>
             <p className={`${DashboardMobileStyles.columnTitle}`}>Prefix</p>
@@ -254,20 +254,27 @@ export default function DashboardMobile() {
                   <p className={`${DashboardMobileStyles.listItemText}`}>
                     {item.id}
                   </p>
-                  <a
-                    className={`${DashboardMobileStyles.listItemText}`}
-                    style={{ color: "#5B93FF" }}
+                  <div
+                    className={`${DashboardMobileStyles.listItemText} ${DashboardMobileStyles.rough}`}
                   >
-                    {item.links}
-                  </a>
+                    <a
+                      className={`${DashboardMobileStyles.listItemText}`}
+                      style={{ color: "#5B93FF" }}
+                    >
+                      {item.links}
+                    </a>
+                  </div>
                   <p className={`${DashboardMobileStyles.listItemText}`}>
                     {item.prefix}
                   </p>
                   <div className={`${DashboardMobileStyles.custom_select_Div}`}>
                     <select className={`${DashboardMobileStyles.selectTag}`}>
-                      {item["select tags"].split(" ").map((selectItem: any) => (
-                        <option value={selectItem}>{selectItem}</option>
-                      ))}
+                      {item["select tags"] &&
+                        item["select tags"]
+                          .split(" ")
+                          .map((selectItem: any) => (
+                            <option value={selectItem}>{selectItem}</option>
+                          ))}
                     </select>
                   </div>
                   <CHFlex className={`${DashboardMobileStyles.selectedTagDiv}`}>
@@ -301,18 +308,18 @@ export default function DashboardMobile() {
           </ul>
         </CVFlex>
       </CVFlex>
-      {data.length > 0 && (
-        <table className="table">
+      {/* {data.length > 0 && (
+        <table className="table" className={`${DashboardMobileStyles.container} ${DashboardMobileStyles.UploadItemsDiv}`}>
           <thead>
             <tr>
               {Object.keys(data[0]).map((key) => (
-                <th key={key}>{key}</th>
+                <th key={key} className={`${DashboardMobileStyles.columnTitle}`}>{key}</th>
               ))}
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             {data.map((row, index) => (
-              <tr key={index}>
+              <tr key={index}  className={`${DashboardMobileStyles.listItem}`}>
                 {Object.values(row).map((value, index) => (
                   <td key={index}>{value}</td>
                 ))}
@@ -320,7 +327,7 @@ export default function DashboardMobile() {
             ))}
           </tbody>
         </table>
-      )}
+      )} */}
     </CVFlex>
   );
 }

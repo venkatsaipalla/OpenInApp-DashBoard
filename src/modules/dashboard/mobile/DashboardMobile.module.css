@@ -125,7 +125,7 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
-  letter-spacing: 0px;
+  letter-spacing: 1px;
   text-align: left;
   /* margin: 0; */
 }
@@ -137,21 +137,22 @@
   /* margin: 0; */
   /* margin-left: 0 !important; */
   padding: 0;
-  /* width: 100%; */
+  width: fit-content;
 }
 .listItem {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   background-color: white;
   border-radius: 1rem;
   padding: 0rem 1rem 0rem 1rem;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   gap: 2rem;
-  /* width: fi; */
-  width: fit-content;
+  width: max-content;
   align-items: center;
   height: 2.8rem;
   margin-right: 1rem;
+
+  width: 100%;
 }
 .listItemText {
   font-family: "Figtree";
@@ -160,6 +161,9 @@
   line-height: 24px;
   letter-spacing: 0px;
   text-align: left;
+  /* width: fit-content; */
+  min-width: 2rem;
+  white-space: nowrap;
 }
 .custom_select_Div {
   /* width: 1rem; */
@@ -220,7 +224,7 @@
   align-items: flex-start;
 }
 .drawerContainer2 {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 .drawerHeader {
   justify-content: space-between;
@@ -252,4 +256,7 @@
 .activeTabDiv {
   background: linear-gradient(90deg, #aca9ff 0%, rgba(172, 169, 255, 0) 91.25%);
   color: #605bff;
+}
+.rough {
+  min-width: 7rem;
 }

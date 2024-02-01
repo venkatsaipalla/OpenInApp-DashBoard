@@ -123,7 +123,7 @@
   border: 0;
 }
 .UploadedItemsContainer {
-  /* margin-top: 2rem; */
+  margin-top: 2rem;
   gap: 2rem;
   width: inherit;
 }
@@ -143,6 +143,7 @@
   letter-spacing: 0px;
   text-align: left;
   margin: 0;
+  white-space: nowrap;
 }
 
 .orderList {
@@ -154,7 +155,7 @@
   padding: 0;
 }
 .listItem {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   background-color: white;
   border-radius: 1rem;
@@ -224,4 +225,7 @@
 .cross {
   color: white;
   font-size: 1rem;
+}
+.rough{
+  min-width: 7rem;
 }
