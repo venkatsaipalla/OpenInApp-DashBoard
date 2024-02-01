@@ -10,31 +10,38 @@ import { HiMiniTicket } from "react-icons/hi2";
 import { LuUpload } from "react-icons/lu";
 
 const MenuTabs = [
-  {id:1,
+  {
+    id: 1,
     icon: <RxDashboard className={`${DashboardWebStyles.tabIcon}`} />,
     title: "Dashboard",
   },
-  {id:2,
+  {
+    id: 2,
     icon: <FaCloudUploadAlt className={`${DashboardWebStyles.tabIcon}`} />,
     title: "Upload",
   },
-  {id:3,
+  {
+    id: 3,
     icon: <HiMiniTicket className={`${DashboardWebStyles.tabIcon}`} />,
     title: "Invoice",
   },
-  {id:4,
+  {
+    id: 4,
     icon: <IoDocumentText className={`${DashboardWebStyles.tabIcon}`} />,
     title: "Schedule",
   },
-  {id:5,
+  {
+    id: 5,
     icon: <FaCalendarAlt className={`${DashboardWebStyles.tabIcon}`} />,
     title: "Calendar",
   },
-  {id:6,
+  {
+    id: 6,
     icon: <IoIosNotifications className={`${DashboardWebStyles.tabIcon}`} />,
     title: "Notification",
   },
-  {id:7,
+  {
+    id: 7,
     icon: <IoSettingsOutline className={`${DashboardWebStyles.tabIcon}`} />,
     title: "Settings",
   },
@@ -77,6 +84,7 @@ export default function DashboardWeb() {
               {item.icon}
               <p
                 className={`${DashboardWebStyles.text} ${DashboardWebStyles.secondaryText}`}
+                style={{ color: "inherit" }}
               >
                 {item.title}
               </p>

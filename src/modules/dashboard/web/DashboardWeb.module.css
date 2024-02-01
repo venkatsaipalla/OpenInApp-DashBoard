@@ -41,6 +41,9 @@
   color: #9a9aa9;
   cursor: pointer;
 }
+.TabItem:hover {
+  color: #605bff;
+}
 .activeTabItem {
   color: #605bff;
   cursor: pointer;
@@ -186,7 +189,7 @@
   /* height: 2rem; */
   padding: 0.75rem;
   border-radius: 8px;
-  border: 1px solid #d2cece; 
+  border: 1px solid #d2cece;
   gap: 8px;
   display: flex;
   flex-direction: column;
