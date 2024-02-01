@@ -49,11 +49,10 @@ const MenuTabs = [
 ];
 
 const MobileMenu = (props: any) => {
-
   return (
     <CVFlex className={`${DashboardMobileStyles.drawerContainer1}`}>
       {/* <CVFlex className={`${DashboardMobileStyles.drawerContainer2}`}> */}
-    
+
       <CVFlex sx={{ gap: "1.62rem" }}>
         {MenuTabs.map((item) => (
           <CHFlex
@@ -134,14 +133,21 @@ export default function DashboardMobile() {
       >
         <p className={`${DashboardMobileStyles.primaryText}`}>Upload CSV</p>
         <CVFlex className={`${DashboardMobileStyles.dropBoxBgContainer}`}>
-          <CVFlex className={`${DashboardMobileStyles.dropBox}`}>
-            <Image alt="xl" src="/images/xl.png" width="27" height="27" />
-            <input type="file" onChange={handleFileChange} />
-            <p className={`${DashboardMobileStyles.secondaryText}`}>
-              Drop your excel sheet here or{" "}
-              <span style={{ color: "#605BFF" }}>browse</span>
-            </p>
-          </CVFlex>
+          <label htmlFor="upload">
+            <CVFlex className={`${DashboardMobileStyles.dropBox}`}>
+              <Image alt="xl" src="/images/xl.png" width="27" height="27" />
+              <input
+                id="upload"
+                type="file"
+                onChange={handleFileChange}
+                style={{ display: "none" }}
+              />
+              <p className={`${DashboardMobileStyles.secondaryText}`}>
+                Drop your excel sheet here or{" "}
+                <span style={{ color: "#605BFF" }}>browse</span>
+              </p>
+            </CVFlex>
+          </label>
           <button
             className={`${DashboardMobileStyles.submitButton}`}
             onClick={handleSubmit}
