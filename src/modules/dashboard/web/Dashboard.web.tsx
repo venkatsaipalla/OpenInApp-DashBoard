@@ -1,8 +1,8 @@
 import { CHFlex, CVFlex } from "@/components/CFlex";
-import React from "react";
+import React, { useState } from "react";
 import DashboardWebStyles from "./DashboardWeb.module.css";
 import Image from "next/image";
-import { RxDashboard } from "react-icons/rx";
+import { RxCross2, RxDashboard } from "react-icons/rx";
 import { IoDocumentText, IoSettingsOutline } from "react-icons/io5";
 import { IoIosNotifications } from "react-icons/io";
 import { FaCalendarAlt, FaCloudUploadAlt, FaRegBell } from "react-icons/fa";
@@ -40,6 +40,16 @@ const MenuTabs = [
   },
 ];
 export default function DashboardWeb() {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [activeTab, setActiveTab] = useState(null);
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle the file submission here, you can send it to the server or process it further.
+    console.log("Selected file:", selectedFile);
+  };
   return (
     <CHFlex>
       <CVFlex className={`${DashboardWebStyles.menuTabDiv}`}>
@@ -98,19 +108,113 @@ export default function DashboardWeb() {
           sx={{ justifyContent: "center", alignItems: "center", height: "80%" }}
         >
           <CVFlex className={`${DashboardWebStyles.dropBoxBgContainer}`}>
-            <CVFlex className={`${DashboardWebStyles.dropBox}`}>
-              <Image alt="xl" src="/images/xl.png" width="27" height="27" />
-              <p className={`${DashboardWebStyles.dropBoxText}`}>
-                Drop your excel sheet here or{" "}
-                <span style={{ color: "#605BFF" }}>browse</span>
-              </p>
-            </CVFlex>
-            <CHFlex className={`${DashboardWebStyles.submitButton}`}>
-              <LuUpload className="inherit" />
-              <p className="inherit">Upload</p>
-            </CHFlex>
+            <form onSubmit={handleSubmit}>
+              <CVFlex className={`${DashboardWebStyles.dropBox}`}>
+                <Image alt="xl" src="/images/xl.png" width="27" height="27" />
+                <input type="file" onChange={handleFileChange} />
+                <p className={`${DashboardWebStyles.dropBoxText}`}>
+                  Drop your excel sheet here or{" "}
+                  <span style={{ color: "#605BFF" }}>browse</span>
+                </p>
+              </CVFlex>
+              <button
+                className={`${DashboardWebStyles.submitButton}`}
+                onClick={handleSubmit}
+              >
+                {/* <CHFlex className={`${DashboardWebStyles.submitButton}`}> */}
+                <LuUpload className="inherit" />
+                <p className="inherit">Upload</p>
+                {/* </CHFlex> */}
+              </button>
+            </form>
           </CVFlex>
         </CHFlex>
+        <CVFlex className={`${DashboardWebStyles.UploadedItemsContainer}`}>
+          <h1
+            className={`${DashboardWebStyles.text} ${DashboardWebStyles.primaryText}`}
+          >
+            Uploads
+          </h1>
+          <CVFlex className={`${DashboardWebStyles.UploadItemsDiv}`}>
+            <CHFlex sx={{ justifyContent: "space-between" }}>
+              <p className={`${DashboardWebStyles.columnTitle}`}>SI No.</p>
+              <p className={`${DashboardWebStyles.columnTitle}`}>Links</p>
+              <p className={`${DashboardWebStyles.columnTitle}`}>Prefix</p>
+              <p className={`${DashboardWebStyles.columnTitle}`}>Add Tags</p>
+              <p
+                className={`${DashboardWebStyles.columnTitle}`}
+                style={{ minWidth: "22rem" }}
+              >
+                Selected Tags
+              </p>
+            </CHFlex>
+            <ol className={`${DashboardWebStyles.orderList}`}>
+              <li className={`${DashboardWebStyles.listItem}`}>
+                <p className={`${DashboardWebStyles.listItemText}`}>01</p>
+                <a
+                  className={`${DashboardWebStyles.listItemText}`}
+                  style={{ color: "#5B93FF" }}
+                >
+                  www.google.com
+                </a>
+                <p className={`${DashboardWebStyles.listItemText}`}>
+                  prefixsample
+                </p>
+                <div className={`${DashboardWebStyles.custom_select_Div}`}>
+                  <select className={`${DashboardWebStyles.selectTag}`}>
+                    <option value="1">Tag 1</option>
+                    <option value="2">Tag 2</option>
+                    <option value="3">Tag 3</option>
+                    <option value="4">Tag 4</option>
+                    <option value="5">Tag 5</option>
+                  </select>
+                </div>
+                <CHFlex className={`${DashboardWebStyles.selectedTagDiv}`}>
+                  <CHFlex className={`${DashboardWebStyles.selectedTags}`}>
+                    <p className={`${DashboardWebStyles.selectTagText}`}>TAG 1</p>
+                    <RxCross2 className={`${DashboardWebStyles.cross}`}/>
+                  </CHFlex>
+                  <CHFlex className={`${DashboardWebStyles.selectedTags}`}>
+                    <p className={`${DashboardWebStyles.selectTagText}`}>TAG 1</p>
+                    <RxCross2 className={`${DashboardWebStyles.cross}`}/>
+                  </CHFlex>
+                  <CHFlex className={`${DashboardWebStyles.selectedTags}`}>
+                    <p className={`${DashboardWebStyles.selectTagText}`}>TAG 1</p>
+                    <RxCross2 className={`${DashboardWebStyles.cross}`}/>
+                  </CHFlex>
+                  <CHFlex className={`${DashboardWebStyles.selectedTags}`}>
+                    <p className={`${DashboardWebStyles.selectTagText}`}>TAG 1</p>
+                    <RxCross2 className={`${DashboardWebStyles.cross}`}/>
+                  </CHFlex>
+                </CHFlex>
+              </li>
+              <li className={`${DashboardWebStyles.listItem}`}>
+                <p className={`${DashboardWebStyles.listItemText}`}>01</p>
+                <a
+                  className={`${DashboardWebStyles.listItemText}`}
+                  style={{ color: "#5B93FF" }}
+                >
+                  www.google.com
+                </a>
+                <p className={`${DashboardWebStyles.listItemText}`}>
+                  prefixsample
+                </p>
+                <div className={`${DashboardWebStyles.custom_select_Div}`}>
+                  <select className={`${DashboardWebStyles.selectTag}`}>
+                    <option value="1">Tag 1</option>
+                    <option value="2">Tag 2</option>
+                    <option value="3">Tag 3</option>
+                    <option value="4">Tag 4</option>
+                    <option value="5">Tag 5</option>
+                  </select>
+                </div>
+                <CHFlex className={`${DashboardWebStyles.selectedTagDiv}`}>
+                  
+                </CHFlex>
+              </li>
+            </ol>
+          </CVFlex>
+        </CVFlex>
       </CVFlex>
     </CHFlex>
   );

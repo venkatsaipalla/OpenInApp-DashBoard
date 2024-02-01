@@ -39,9 +39,11 @@
 }
 .TabItem {
   color: #9a9aa9;
+  cursor: pointer;
 }
 .activeTabItem {
   color: #605bff;
+  cursor: pointer;
 }
 
 /* right part  */
@@ -109,4 +111,111 @@
   font-weight: 600;
   line-height: 1.5rem;
   cursor: pointer;
+  /* added */
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 1.5rem;
+  border: 0;
+}
+.UploadedItemsContainer {
+  /* margin-top: 2rem; */
+  gap: 2rem;
+  width: inherit;
+}
+.UploadItemsDiv {
+  background-color: #f7f3f3;
+  border-radius: 1rem;
+  /* gap: 2rem; */
+  /* border: 2px solid red; */
+  padding: 1rem;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0);
+}
+.columnTitle {
+  font-family: "Figtree";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin: 0;
+}
+
+.orderList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* margin: 0; */
+  /* margin-left: 0 !important; */
+  padding: 0;
+}
+.listItem {
+  border: 1px solid red;
+  display: flex;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 0rem 1rem 0rem 1rem;
+  justify-content: space-between;
+  /* width: inherit; */
+  align-items: center;
+  height: 3.6rem;
+}
+.listItemText {
+  font-family: "Figtree";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+.custom_select_Div {
+  width: 8rem;
+  /* height: 2rem; */
+  /* padding: 0.75rem;*/
+  /* border-radius: 8px; */
+  /* border: 1px solid #d2cece; */
+  /* gap: 8px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff; */
+}
+.selectTag {
+  /* height: 2rem; */
+  width: 8rem;
+  /* height: 2rem; */
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #d2cece; 
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding-left: 12px;
+  outline: none;
+}
+.selectedTagDiv {
+  min-width: 35%;
+  gap: 0.5rem;
+}
+.selectedTags {
+  /* width: 60px; */
+  /* height: 24px; */
+  padding: 4px 4px 4px 8px;
+  border-radius: 4px;
+  gap: 7px;
+  background-color: #605bff;
+}
+.selectTagText {
+  margin: 0;
+  font-family: "Figtree";
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: white;
+}
+.cross {
+  color: white;
+  font-size: 1rem;
 }
