@@ -1,6 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`]
+# loginRoute- '/login'
+# DashboardRoute- '/dashboard'
+(https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
+
+
+
+
+https://github.com/venkatsaipalla/OpenInApp-DashBoard/assets/72677771/7dd043f6-192f-4fa6-a168-ce5c58f55e2d
+
+
 
 First, run the development server:
 
