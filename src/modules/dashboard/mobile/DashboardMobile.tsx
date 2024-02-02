@@ -75,7 +75,7 @@ const MobileMenu = (props: any) => {
   );
 };
 
-const  DashboardMobile = () => {
+const DashboardMobile = () => {
   const [data, setData] = useState([]);
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -122,12 +122,12 @@ const  DashboardMobile = () => {
   const handleFileUpload = (e: any) => {
     const reader = new FileReader();
     reader.readAsBinaryString(e.target.files[0]);
-    reader.onload = (e) => {
+    reader.onload = (e: any) => {
       const data = e.target.result;
       const workbook = XLSX.read(data, { type: "binary" });
       const sheetName = workbook.SheetNames[0];
       const sheet = workbook.Sheets[sheetName];
-      const parsedData = XLSX.utils.sheet_to_json(sheet);
+      const parsedData: any = XLSX.utils.sheet_to_json(sheet);
       setData(parsedData);
     };
   };
@@ -272,8 +272,10 @@ const  DashboardMobile = () => {
                       {item["select tags"] &&
                         item["select tags"]
                           .split(" ")
-                          .map((selectItem: any) => (
-                            <option value={selectItem}>{selectItem}</option>
+                          .map((selectItem: any, index: any) => (
+                            <option value={selectItem} key={index}>
+                              {selectItem}
+                            </option>
                           ))}
                     </select>
                   </div>
@@ -312,4 +314,4 @@ const  DashboardMobile = () => {
   );
 };
 
-export default DashboardMobile
+export default DashboardMobile;

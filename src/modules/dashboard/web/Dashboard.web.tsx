@@ -51,8 +51,8 @@ const MenuTabs = [
 
 export default function DashboardWeb() {
   const [data, setData] = useState([]);
-  const [selectedTagsData, setSelectedTagsData] = useState({});
-  const [files, setFiles] = useState(null);
+  const [selectedTagsData, setSelectedTagsData]: any = useState({});
+  const [files, setFiles]: any = useState(null);
   const [fileName, setFileName] = useState(null);
   const [activeTab, setActiveTab] = useState(null);
   const [error, setError] = useState("");
@@ -74,12 +74,12 @@ export default function DashboardWeb() {
 
     const reader = new FileReader();
     reader.readAsBinaryString(files);
-    reader.onload = (e) => {
+    reader.onload = (e: any) => {
       const data = e.target.result;
       const workbook = XLSX.read(data, { type: "binary" });
       const sheetName = workbook.SheetNames[0];
       const sheet = workbook.Sheets[sheetName];
-      const parsedData = XLSX.utils.sheet_to_json(sheet);
+      const parsedData: any = XLSX.utils.sheet_to_json(sheet);
       setData(parsedData);
     };
     setFileName(null);
@@ -104,7 +104,7 @@ export default function DashboardWeb() {
     }
   };
   console.log(data);
-  const handleSelectInputChange =  (e: any) => {
+  const handleSelectInputChange = (e: any) => {
     console.log(e.target.value);
     let temp = selectedTagsData;
     if (e.target.id in temp) {
@@ -115,7 +115,7 @@ export default function DashboardWeb() {
     } else {
       temp[e.target.id] = [e.target.value];
     }
-     setSelectedTagsData(temp);
+    setSelectedTagsData(temp);
   };
   const removeSelectedTag = (id: any, value: any) => {
     console.log({ value });
@@ -303,8 +303,12 @@ export default function DashboardWeb() {
                           {item["select tags"] &&
                             item["select tags"]
                               .split(" ")
-                              .map((selectItem: any) => (
-                                <option value={selectItem} id={item.id}>
+                              .map((selectItem: any, index: any) => (
+                                <option
+                                  value={selectItem}
+                                  id={item.id}
+                                  key={index}
+                                >
                                   {selectItem}
                                 </option>
                               ))}
@@ -315,24 +319,27 @@ export default function DashboardWeb() {
                         className={`${DashboardWebStyles.selectedTagDiv}`}
                       >
                         {item.id in selectedTagsData &&
-                          selectedTagsData[item.id].map((index: any) => (
-                            <CHFlex
-                              className={`${DashboardWebStyles.selectedTags}`}
-                            >
-                              <p
-                                className={`${DashboardWebStyles.selectTagText}`}
+                          selectedTagsData[item.id].map(
+                            (index: any, key: any) => (
+                              <CHFlex
+                                className={`${DashboardWebStyles.selectedTags}`}
+                                key={key}
                               >
-                                {index.replace(/,/g, "")}
-                              </p>
-                              <RxCross2
-                                id={item.id}
-                                className={`${DashboardWebStyles.cross}`}
-                                onClick={() =>
-                                  removeSelectedTag(item.id, index)
-                                }
-                              />
-                            </CHFlex>
-                          ))}
+                                <p
+                                  className={`${DashboardWebStyles.selectTagText}`}
+                                >
+                                  {index.replace(/,/g, "")}
+                                </p>
+                                <RxCross2
+                                  id={item.id}
+                                  className={`${DashboardWebStyles.cross}`}
+                                  onClick={() =>
+                                    removeSelectedTag(item.id, index)
+                                  }
+                                />
+                              </CHFlex>
+                            )
+                          )}
                         {/* <CHFlex
                           className={`${DashboardWebStyles.selectedTags}`}
                         >
