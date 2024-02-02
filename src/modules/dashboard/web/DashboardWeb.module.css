@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css');
+@import url("https://fonts.googleapis.com/css");
 .menuTabDiv {
   padding-top: 3.19rem;
 
@@ -41,7 +41,7 @@
 .TabItem {
   color: #9a9aa9;
   cursor: pointer;
-  padding-left: 1.93rem; 
+  padding-left: 1.93rem;
   height: 3rem;
 }
 .TabItem:hover {
@@ -51,6 +51,7 @@
 .activeTabItem {
   color: #605bff;
   cursor: pointer;
+  background: linear-gradient(90deg, #aca9ff 0%, rgba(172, 169, 255, 0) 91.25%);
 }
 
 /* right part  */
@@ -126,7 +127,7 @@
   /* margin-top: 1.5rem; */
   border: 0;
 }
-.submitButton:hover{
+.submitButton:hover {
   background-color: #8884ec;
 }
 .UploadedItemsContainer {

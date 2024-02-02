@@ -8,7 +8,7 @@ import DashboardMobileStyles from "@/modules/dashboard/mobile/DashboardMobile.mo
 import Image from "next/image";
 
 export const CHFlex = React.memo((props: any) => {
-  const { className, children, sx } = props;
+  const { className, children, sx, ...rest } = props;
   return (
     <div
       style={{
@@ -18,6 +18,7 @@ export const CHFlex = React.memo((props: any) => {
         flexDirection: "row",
         ...sx,
       }}
+      {...rest}
       {...{ className }}
     >
       {children}

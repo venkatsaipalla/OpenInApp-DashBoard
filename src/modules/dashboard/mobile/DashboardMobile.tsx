@@ -50,6 +50,10 @@ const MenuTabs = [
 ];
 
 const MobileMenu = (props: any) => {
+  const { activeTab, handleMenuTabChange } = props;
+  const action = (id: any) => {
+    handleMenuTabChange(id);
+  };
   return (
     <CVFlex className={`${DashboardMobileStyles.drawerContainer1}`}>
       {/* <CVFlex className={`${DashboardMobileStyles.drawerContainer2}`}> */}
@@ -57,8 +61,13 @@ const MobileMenu = (props: any) => {
       <CVFlex sx={{ gap: "1.62rem" }}>
         {MenuTabs.map((item) => (
           <CHFlex
-            className={`${DashboardMobileStyles.menuTabDiv}`}
+            className={
+              activeTab == item.id
+                ? ` ${DashboardMobileStyles.activeTabDiv} ${DashboardMobileStyles.menuTabDiv}`
+                : `${DashboardMobileStyles.menuTabDiv}`
+            }
             key={item.id}
+            onClick={() => action(item.id)}
           >
             {item.icon}
             <p
@@ -77,18 +86,91 @@ const MobileMenu = (props: any) => {
 
 const DashboardMobile = () => {
   const [data, setData] = useState([]);
-
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedTagsData, setSelectedTagsData]: any = useState({});
+  const [files, setFiles]: any = useState(null);
   const [fileName, setFileName] = useState(null);
-  const [activeTab, setActiveTab] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState(1);
   const [error, setError] = useState("");
   const allowedExtensions = ["csv", "xls", "xlsx"];
+
+  const handleSubmit = () => {
+    // setFormData(data)
+
+    const reader = new FileReader();
+    reader.readAsBinaryString(files);
+    reader.onload = (e: any) => {
+      const data = e.target.result;
+      const workbook = XLSX.read(data, { type: "binary" });
+      const sheetName = workbook.SheetNames[0];
+      const sheet = workbook.Sheets[sheetName];
+      const parsedData: any = XLSX.utils.sheet_to_json(sheet);
+      // setData(parsedData);
+      // Add empty "tags" array to each object
+      const dataWithTags = parsedData.map((obj: any) => ({
+        ...obj,
+        tags: [], // Add empty "tags" array
+      }));
+
+      setData(dataWithTags);
+    };
+    setFileName(null);
+    setFiles(null);
+  };
+  const removeFile = (event: any) => {
+    event.stopPropagation();
+    setFileName(null);
+    setFiles(null);
+  };
+
+  const handleFileUpload = (event: any) => {
+    if (event.target.files[0]) {
+      setError("");
+      const fileExtension = event.target.files[0]?.name.split(".")[1];
+      if (!allowedExtensions.includes(fileExtension)) {
+        setError("Please input a csv file");
+        return;
+      }
+      setFileName(event.target.files[0].name);
+      setFiles(event.target.files[0]);
+    }
+  };
+  console.log(data);
+
+  const handleSelectInputChange = (tagName: any, id: any) => {
+    console.log({ tagName, id });
+    const shallow = [...data];
+    const updatedTag: any = shallow.map((item: any) => {
+      if (item.id === id) {
+        item.tags = [
+          ...item.tags,
+          { label: tagName, id: Math.ceil(Math.random() * 123) },
+        ];
+      }
+      return item;
+    });
+
+    console.log(updatedTag);
+    setData(updatedTag);
+  };
+  const removeSelectedTag = (id1: any, id2: any) => {
+    const shallow = [...data];
+    const updatedTag: any = shallow.map((item: any) => {
+      if (item.id === id1) {
+        const tempTags = item.tags.filter((eachTag: any) => eachTag.id !== id2);
+        item.tags = [...tempTags];
+      }
+      return item;
+    });
+    setData(updatedTag);
+  };
+  const handleMenuTabChange = (e: any) => {
+    setActiveTab(e);
+  };
+  const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  console.log({ error });
-  console.log({ data });
+
   const handleFileChange = (event: any) => {
     console.log(event);
     if (event.target.files[0]) {
@@ -100,42 +182,17 @@ const DashboardMobile = () => {
         return;
       }
       setFileName(event.target.files[0].name);
-      setSelectedFile(event.target.files[0]);
     }
   };
-  const handleSubmit = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-    // Handle the file submission here, you can send it to the server or process it further.
-    console.log("Selected file:", selectedFile);
-    readCSVFile();
-  };
-  const removeFile = () => {
-    setSelectedFile(null);
-    setFileName(null);
-  };
-  const readCSVFile = () => {
-    selectedFile &&
-      readXlsxFile(selectedFile).then((rows) => {
-        console.log(rows);
-      });
-  };
-  const handleFileUpload = (e: any) => {
-    const reader = new FileReader();
-    reader.readAsBinaryString(e.target.files[0]);
-    reader.onload = (e: any) => {
-      const data = e.target.result;
-      const workbook = XLSX.read(data, { type: "binary" });
-      const sheetName = workbook.SheetNames[0];
-      const sheet = workbook.Sheets[sheetName];
-      const parsedData: any = XLSX.utils.sheet_to_json(sheet);
-      setData(parsedData);
-    };
-  };
+
   return (
     <CVFlex className={`${DashboardMobileStyles.bgContainer}`}>
       {isOpen && (
         <CDrawer isOpen={isOpen} setIsOpen={setIsOpen}>
-          <MobileMenu />
+          <MobileMenu
+            handleMenuTabChange={handleMenuTabChange}
+            activeTab={activeTab}
+          />
         </CDrawer>
       )}
       <CHFlex className={`${DashboardMobileStyles.headerMobile}`}>
@@ -185,7 +242,7 @@ const DashboardMobile = () => {
                 style={{ display: "none" }}
                 accept=".csv,.xlsx,.xls"
               />
-              {selectedFile ? (
+              {fileName ? (
                 <p
                   className={`${DashboardMobileStyles.secondaryText}`}
                   style={{ textOverflow: "ellipsis" }}
@@ -229,14 +286,22 @@ const DashboardMobile = () => {
         >
           Uploads
         </p>
-        <CVFlex
-          className={`${DashboardMobileStyles.container} ${DashboardMobileStyles.UploadItemsDiv}`}
-        >
-          <CHFlex sx={{ gap: "5.5rem" }}>
+        <CVFlex className={` ${DashboardMobileStyles.UploadItemsDiv}`}>
+          <CHFlex sx={{ gap: "5rem" }}>
             <p className={`${DashboardMobileStyles.columnTitle}`}>SI No.</p>
             <p className={`${DashboardMobileStyles.columnTitle}`}>Links</p>
-            <p className={`${DashboardMobileStyles.columnTitle}`}>Prefix</p>
-            <p className={`${DashboardMobileStyles.columnTitle}`}>Add Tags</p>
+            <p
+              className={`${DashboardMobileStyles.columnTitle}`}
+              // style={{ marginRight: "-3rem" }}
+            >
+              Prefix
+            </p>
+            <p
+              className={`${DashboardMobileStyles.columnTitle}`}
+              // style={{ marginRight: "-1rem" }}
+            >
+              Add Tags
+            </p>
             <p
               className={`${DashboardMobileStyles.columnTitle}`}
               style={{ minWidth: "10rem" }}
@@ -268,42 +333,41 @@ const DashboardMobile = () => {
                     {item.prefix}
                   </p>
                   <div className={`${DashboardMobileStyles.custom_select_Div}`}>
-                    <select className={`${DashboardMobileStyles.selectTag}`}>
+                    <select
+                      className={`${DashboardMobileStyles.selectTag}`}
+                      onChange={(e: any) =>
+                        handleSelectInputChange(e.target.value, item.id)
+                      }
+                      id={item.id}
+                    >
                       {item["select tags"] &&
                         item["select tags"]
-                          .split(" ")
+                          .split(", ")
                           .map((selectItem: any, index: any) => (
-                            <option value={selectItem} key={index}>
+                            <option value={selectItem} id={item.id} key={index}>
                               {selectItem}
                             </option>
                           ))}
                     </select>
                   </div>
                   <CHFlex className={`${DashboardMobileStyles.selectedTagDiv}`}>
-                    <CHFlex className={`${DashboardMobileStyles.selectedTags}`}>
-                      <p className={`${DashboardMobileStyles.selectTagText}`}>
-                        TAG 1
-                      </p>
-                      <RxCross2 className={`${DashboardMobileStyles.cross}`} />
-                    </CHFlex>
-                    <CHFlex className={`${DashboardMobileStyles.selectedTags}`}>
-                      <p className={`${DashboardMobileStyles.selectTagText}`}>
-                        TAG 1
-                      </p>
-                      <RxCross2 className={`${DashboardMobileStyles.cross}`} />
-                    </CHFlex>
-                    <CHFlex className={`${DashboardMobileStyles.selectedTags}`}>
-                      <p className={`${DashboardMobileStyles.selectTagText}`}>
-                        TAG 1
-                      </p>
-                      <RxCross2 className={`${DashboardMobileStyles.cross}`} />
-                    </CHFlex>
-                    <CHFlex className={`${DashboardMobileStyles.selectedTags}`}>
-                      <p className={`${DashboardMobileStyles.selectTagText}`}>
-                        TAG 1
-                      </p>
-                      <RxCross2 className={`${DashboardMobileStyles.cross}`} />
-                    </CHFlex>
+                    {item.tags &&
+                      item.tags.map((index: any, key: any) => (
+                        <CHFlex
+                          className={`${DashboardMobileStyles.selectedTags}`}
+                          key={key}
+                        >
+                          <p
+                            className={`${DashboardMobileStyles.selectTagText}`}
+                          >
+                            {index.label}
+                          </p>
+                          <RxCross2
+                            className={`${DashboardMobileStyles.cross}`}
+                            onClick={() => removeSelectedTag(item.id, index.id)}
+                          />
+                        </CHFlex>
+                      ))}
                   </CHFlex>
                 </li>
               ))}
