@@ -52,13 +52,16 @@ export const LoadingPage = () => {
       }}
     >
       <img
-        alt="charistism loader"
+        alt="openinApp loader"
         style={{
-          height: "8em",
+          height: "50vh",
+          width: "50vw",
+          borderRadius: "5em",
         }}
-        src={
-          "https://charitism-campaigns.s3.ap-south-1.amazonaws.com/charitism-v2/campaign-details/48e4d153-2125-44ce-8435-e06b55845837"
-        }
+        // src={
+        //   "https://charitism-campaigns.s3.ap-south-1.amazonaws.com/charitism-v2/campaign-details/48e4d153-2125-44ce-8435-e06b55845837"
+        // }
+        src="/images/1704259879382.gif"
       />
     </div>
   );
