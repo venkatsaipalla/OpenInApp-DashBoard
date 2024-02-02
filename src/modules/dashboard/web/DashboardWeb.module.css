@@ -126,6 +126,9 @@
   /* margin-top: 1.5rem; */
   border: 0;
 }
+.submitButton:hover{
+  background-color: #8884ec;
+}
 .UploadedItemsContainer {
   margin-top: 2rem;
   gap: 2rem;
@@ -229,6 +232,7 @@
 .cross {
   color: white;
   font-size: 1rem;
+  cursor: pointer;
 }
 .rough {
   min-width: 7rem;

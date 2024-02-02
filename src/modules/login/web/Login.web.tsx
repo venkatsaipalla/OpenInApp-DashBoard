@@ -7,7 +7,7 @@ import { FaGithub } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
-
+import OAuth from "@/components/OAuth";
 export default function LoginWeb() {
   return (
     <CHFlex className={`${LoginPageWebStyles.bgContainer}`}>
@@ -51,19 +51,20 @@ export default function LoginWeb() {
             </p>
           </CVFlex>
           <CHFlex sx={{ gap: "1.72rem" }}>
-            <CHFlex
-              className={`${LoginPageWebStyles.googleTabDiv} ${LoginPageWebStyles.roundedDiv}`}
-            >
-              <Image
-                src="/images/google-icon.png"
-                alt="google"
-                width="16"
-                height="16"
-              />
-              <p className={`${LoginPageWebStyles.secondaryText}`}>
-                Sign in with Google
-              </p>
-            </CHFlex>
+            {/* <CHFlex
+                className={`${LoginPageWebStyles.googleTabDiv} ${LoginPageWebStyles.roundedDiv}`}
+              >
+                <Image
+                  src="/images/google-icon.png"
+                  alt="google"
+                  width="16"
+                  height="16"
+                />
+                <p className={`${LoginPageWebStyles.secondaryText}`}>
+                  Sign in with Google
+                </p>
+              </CHFlex> */}
+            <OAuth />
             <CHFlex
               className={`${LoginPageWebStyles.googleTabDiv}  ${LoginPageWebStyles.roundedDiv}`}
             >

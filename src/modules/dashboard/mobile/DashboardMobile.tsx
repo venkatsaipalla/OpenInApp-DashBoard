@@ -75,7 +75,7 @@ const MobileMenu = (props: any) => {
   );
 };
 
-export default function DashboardMobile() {
+const  DashboardMobile = () => {
   const [data, setData] = useState([]);
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -308,26 +308,8 @@ export default function DashboardMobile() {
           </ul>
         </CVFlex>
       </CVFlex>
-      {/* {data.length > 0 && (
-        <table className="table" className={`${DashboardMobileStyles.container} ${DashboardMobileStyles.UploadItemsDiv}`}>
-          <thead>
-            <tr>
-              {Object.keys(data[0]).map((key) => (
-                <th key={key} className={`${DashboardMobileStyles.columnTitle}`}>{key}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody >
-            {data.map((row, index) => (
-              <tr key={index}  className={`${DashboardMobileStyles.listItem}`}>
-                {Object.values(row).map((value, index) => (
-                  <td key={index}>{value}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )} */}
     </CVFlex>
   );
-}
+};
+
+export default DashboardMobile

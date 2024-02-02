@@ -48,50 +48,32 @@ const MenuTabs = [
     title: "Settings",
   },
 ];
+
 export default function DashboardWeb() {
   const [data, setData] = useState([]);
   const [selectedTagsData, setSelectedTagsData] = useState({});
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [files, setFiles] = useState(null);
   const [fileName, setFileName] = useState(null);
   const [activeTab, setActiveTab] = useState(null);
   const [error, setError] = useState("");
   const allowedExtensions = ["csv", "xls", "xlsx"];
 
-  console.log({ error });
-  console.log({ data });
   const handleFileChange = (event: any) => {
-    console.log(event);
     if (event.target.files[0]) {
       setError("");
       const fileExtension = event.target.files[0]?.name.split(".")[1];
-      console.log(fileExtension);
       if (!allowedExtensions.includes(fileExtension)) {
         setError("Please input a csv file");
         return;
       }
       setFileName(event.target.files[0].name);
-      setSelectedFile(event.target.files[0]);
     }
   };
-  const handleSubmit = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-    // Handle the file submission here, you can send it to the server or process it further.
-    console.log("Selected file:", selectedFile);
-    readCSVFile();
-  };
-  const removeFile = () => {
-    setSelectedFile(null);
-    setFileName(null);
-  };
-  const readCSVFile = () => {
-    selectedFile &&
-      readXlsxFile(selectedFile).then((rows) => {
-        console.log(rows);
-      });
-  };
-  const handleFileUpload = (e: any) => {
+  const handleSubmit = () => {
+    // setFormData(data)
+
     const reader = new FileReader();
-    reader.readAsBinaryString(e.target.files[0]);
+    reader.readAsBinaryString(files);
     reader.onload = (e) => {
       const data = e.target.result;
       const workbook = XLSX.read(data, { type: "binary" });
@@ -100,17 +82,47 @@ export default function DashboardWeb() {
       const parsedData = XLSX.utils.sheet_to_json(sheet);
       setData(parsedData);
     };
+    setFileName(null);
+    setFiles(null);
   };
-  console.log({ selectedTagsData });
-  const handleSelectInputChange = (e: any) => {
-    if (e.target.id in selectedTagsData) {
-      selectedTagsData[e.target.id].push(e.target.value);
-    } else {
-      selectedTagsData[e.target.id] = [e.target.value];
-    }
-    setSelectedTagsData(selectedTagsData);
+  const removeFile = (event: any) => {
+    event.stopPropagation();
+    setFileName(null);
+    setFiles(null);
   };
 
+  const handleFileUpload = (event: any) => {
+    if (event.target.files[0]) {
+      setError("");
+      const fileExtension = event.target.files[0]?.name.split(".")[1];
+      if (!allowedExtensions.includes(fileExtension)) {
+        setError("Please input a csv file");
+        return;
+      }
+      setFileName(event.target.files[0].name);
+      setFiles(event.target.files[0]);
+    }
+  };
+  console.log(data);
+  const handleSelectInputChange =  (e: any) => {
+    console.log(e.target.value);
+    let temp = selectedTagsData;
+    if (e.target.id in temp) {
+      console.log("haii");
+      console.log({ selectedTagsData });
+      console.log("haii 112");
+      temp[e.target.id].push(e.target.value);
+    } else {
+      temp[e.target.id] = [e.target.value];
+    }
+     setSelectedTagsData(temp);
+  };
+  const removeSelectedTag = (id: any, value: any) => {
+    console.log({ value });
+    selectedTagsData[id].pop(value);
+    setSelectedTagsData(selectedTagsData);
+  };
+  console.log({ selectedTagsData });
   return (
     <CHFlex>
       <CVFlex className={`${DashboardWebStyles.menuTabDiv}`}>
@@ -181,19 +193,25 @@ export default function DashboardWeb() {
                   style={{ display: "none" }}
                   accept=".csv,.xlsx,.xls"
                 />
-                {selectedFile ? (
+                {fileName ? (
                   <p
                     className={`${DashboardWebStyles.dropBoxText}`}
                     style={{ textOverflow: "ellipsis" }}
                   >
                     {fileName}
                     <br />
-                    <span
-                      style={{ color: "red", cursor: "pointer" }}
+                    <div
+                      style={{
+                        color: "red",
+                        cursor: "pointer",
+                        height: "2rem",
+                        // width: "2rem",
+                        textAlign: "center",
+                      }}
                       onClick={removeFile}
                     >
-                      remove
-                    </span>
+                      Remove
+                    </div>
                   </p>
                 ) : (
                   <p className={`${DashboardWebStyles.dropBoxText}`}>
@@ -211,10 +229,8 @@ export default function DashboardWeb() {
                 fileName !== null ? { opacity: "100%" } : { opacity: "40%" }
               }
             >
-              {/* <CHFlex className={`${DashboardWebStyles.submitButton}`}> */}
               <LuUpload className="inherit" />
               <p className="inherit">Upload</p>
-              {/* </CHFlex> */}
             </button>
           </CVFlex>
         </CHFlex>
@@ -248,7 +264,7 @@ export default function DashboardWeb() {
                 </p>
                 <p
                   className={`${DashboardWebStyles.columnTitle}`}
-                  style={{ minWidth: "22rem" }}
+                  style={{ minWidth: "35%" }}
                 >
                   Selected Tags
                 </p>
@@ -282,6 +298,7 @@ export default function DashboardWeb() {
                         <select
                           className={`${DashboardWebStyles.selectTag}`}
                           onChange={handleSelectInputChange}
+                          id={item.id}
                         >
                           {item["select tags"] &&
                             item["select tags"]
@@ -293,41 +310,37 @@ export default function DashboardWeb() {
                               ))}
                         </select>
                       </div>
+
                       <CHFlex
                         className={`${DashboardWebStyles.selectedTagDiv}`}
                       >
-                        <CHFlex
+                        {item.id in selectedTagsData &&
+                          selectedTagsData[item.id].map((index: any) => (
+                            <CHFlex
+                              className={`${DashboardWebStyles.selectedTags}`}
+                            >
+                              <p
+                                className={`${DashboardWebStyles.selectTagText}`}
+                              >
+                                {index.replace(/,/g, "")}
+                              </p>
+                              <RxCross2
+                                id={item.id}
+                                className={`${DashboardWebStyles.cross}`}
+                                onClick={() =>
+                                  removeSelectedTag(item.id, index)
+                                }
+                              />
+                            </CHFlex>
+                          ))}
+                        {/* <CHFlex
                           className={`${DashboardWebStyles.selectedTags}`}
                         >
                           <p className={`${DashboardWebStyles.selectTagText}`}>
                             TAG 1
                           </p>
                           <RxCross2 className={`${DashboardWebStyles.cross}`} />
-                        </CHFlex>
-                        <CHFlex
-                          className={`${DashboardWebStyles.selectedTags}`}
-                        >
-                          <p className={`${DashboardWebStyles.selectTagText}`}>
-                            TAG 1
-                          </p>
-                          <RxCross2 className={`${DashboardWebStyles.cross}`} />
-                        </CHFlex>
-                        <CHFlex
-                          className={`${DashboardWebStyles.selectedTags}`}
-                        >
-                          <p className={`${DashboardWebStyles.selectTagText}`}>
-                            TAG 1
-                          </p>
-                          <RxCross2 className={`${DashboardWebStyles.cross}`} />
-                        </CHFlex>
-                        <CHFlex
-                          className={`${DashboardWebStyles.selectedTags}`}
-                        >
-                          <p className={`${DashboardWebStyles.selectTagText}`}>
-                            TAG 1
-                          </p>
-                          <RxCross2 className={`${DashboardWebStyles.cross}`} />
-                        </CHFlex>
+                        </CHFlex> */}
                       </CHFlex>
                     </li>
                   ))}

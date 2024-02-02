@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300');
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300");
 /* right side div  */
 
 .bgContainer {
@@ -37,6 +37,8 @@
   border-radius: 1rem;
   box-shadow: #000;
   background-color: #ffffff;
+  border: 0;
+  white-space: nowrap;
 }
 .googleTabDiv {
   /* min-width: 12.4rem; */
