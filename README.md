@@ -1,14 +1,20 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`]
 # loginRoute- '/login'
 # DashboardRoute- '/dashboard'
+
+## https://venkat-sai-three.vercel.app/dashboard
+## https://venkat-sai-three.vercel.app/login
+
 (https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
 
+https://github.com/venkatsaipalla/OpenInApp-DashBoard/assets/72677771/a09b9227-48f4-4f7f-9fd7-cfec5308fc1e
 
 
-https://github.com/venkatsaipalla/OpenInApp-DashBoard/assets/72677771/7dd043f6-192f-4fa6-a168-ce5c58f55e2d
+
+
 
 
 
