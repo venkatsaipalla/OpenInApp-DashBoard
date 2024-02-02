@@ -3,7 +3,7 @@ import React from "react";
 import LoginPageMobileStyle from "./LoginMobile.module.css";
 import Image from "next/image";
 import { FaDiscord, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-
+import OAuth from "@/components/OAuth";
 export default function LoginMobile() {
   return (
     <CVFlex className={`${LoginPageMobileStyle.bgContainer}`}>
@@ -48,37 +48,30 @@ export default function LoginMobile() {
       </CVFlex>
       <CHFlex
         className={`${LoginPageMobileStyle.container}`}
-        sx={{ justifyContent: "space-between" }}
+        sx={{ justifyContent: "space-between", gap: "1rem" }}
       >
-        <CHFlex
-          sx={{ justifyContent: "space-between" }}
-          className={` ${LoginPageMobileStyle.roundedDiv}`}
+        <OAuth isMobile={true} />
+        <button
+          className={` ${LoginPageMobileStyle.roundedDiv} ${LoginPageMobileStyle.gogleTab}`}
         >
-          <Image
-            src="/images/google-icon.png"
-            alt="google"
-            width="12"
-            height="12"
-          />
-          <p
-            className={`${LoginPageMobileStyle.text} ${LoginPageMobileStyle.secondaryText}`}
-            style={{ color: "#858585" }}
+          <CHFlex
+            sx={{ justifyContent: "space-between" }}
+            className={` ${LoginPageMobileStyle.roundedDiv}`}
           >
-            Sign in with Google
-          </p>
-        </CHFlex>
-        <CHFlex
-          sx={{ justifyContent: "space-between" }}
-          className={` ${LoginPageMobileStyle.roundedDiv}`}
-        >
-          <Image src="/images/apple.png" alt="google" width="12" height="12" />
-          <p
-            className={`${LoginPageMobileStyle.text} ${LoginPageMobileStyle.secondaryText}`}
-            style={{ color: "#858585" }}
-          >
-            Sign in with Apple
-          </p>
-        </CHFlex>
+            <Image
+              src="/images/apple.png"
+              alt="google"
+              width="12"
+              height="12"
+            />
+            <p
+              className={`${LoginPageMobileStyle.text} ${LoginPageMobileStyle.secondaryText}`}
+              style={{ color: "#858585" }}
+            >
+              Sign in with Apple
+            </p>
+          </CHFlex>
+        </button>
       </CHFlex>
       <CVFlex
         className={`${LoginPageMobileStyle.container} ${LoginPageMobileStyle.bgroundedDiv}`}
@@ -124,16 +117,25 @@ export default function LoginMobile() {
           Sign In
         </button>
       </CVFlex>
-      <CVFlex sx={{justifyContent:'center',gap:'0.5rem'}}>
-        <p className={`${LoginPageMobileStyle.text} ${LoginPageMobileStyle.subHeading}`}>Don’t have an account?</p>
-        <a className={`${LoginPageMobileStyle.text} ${LoginPageMobileStyle.RegisterHere}`}> Register here</a>
+      <CVFlex sx={{ justifyContent: "center", gap: "0.5rem" }}>
+        <p
+          className={`${LoginPageMobileStyle.text} ${LoginPageMobileStyle.subHeading}`}
+        >
+          Don’t have an account?
+        </p>
+        <a
+          className={`${LoginPageMobileStyle.text} ${LoginPageMobileStyle.RegisterHere}`}
+        >
+          {" "}
+          Register here
+        </a>
       </CVFlex>
       <CHFlex className={`${LoginPageMobileStyle.socialMediaDiv}`}>
-          <FaGithub className={`${LoginPageMobileStyle.SocialMediaIcons}`} />
-          <FaTwitter className={`${LoginPageMobileStyle.SocialMediaIcons}`} />
-          <FaLinkedin className={`${LoginPageMobileStyle.SocialMediaIcons}`} />
-          <FaDiscord className={`${LoginPageMobileStyle.SocialMediaIcons}`} />
-        </CHFlex>
+        <FaGithub className={`${LoginPageMobileStyle.SocialMediaIcons}`} />
+        <FaTwitter className={`${LoginPageMobileStyle.SocialMediaIcons}`} />
+        <FaLinkedin className={`${LoginPageMobileStyle.SocialMediaIcons}`} />
+        <FaDiscord className={`${LoginPageMobileStyle.SocialMediaIcons}`} />
+      </CHFlex>
     </CVFlex>
   );
 }

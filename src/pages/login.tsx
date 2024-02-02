@@ -3,17 +3,17 @@ import dynamic from "next/dynamic";
 import useDeviceSize from "@/hooks/useDeviceSize";
 import { LoadingPage } from "@/components/CFlex";
 import { useEffect } from "react";
-// import LoginWeb from "@/modules/login/web/Login.web";
-// import LoginMobile from "@/modules/login/mobile/Login.mobile";
+import LoginWeb from "@/modules/login/web/Login.web";
+import LoginMobile from "@/modules/login/mobile/Login.mobile";
 
-const LoginMobile = dynamic(() => import('@/modules/login/mobile/Login.mobile'), {
-    ssr: false,
-    loading: () => <LoadingPage />,
-});
-const LoginWeb = dynamic(() => import('@/modules/login/web/Login.web'), {
-    ssr: false,
-    loading: () => <LoadingPage />,
-});
+// const LoginMobile = dynamic(() => import('@/modules/login/mobile/Login.mobile'), {
+//     ssr: false,
+//     loading: () => <LoadingPage />,
+// });
+// const LoginWeb = dynamic(() => import('@/modules/login/web/Login.web'), {
+//     ssr: false,
+//     loading: () => <LoadingPage />,
+// });
 
 const LoginPage = () => {
   const deviceSize = useDeviceSize();

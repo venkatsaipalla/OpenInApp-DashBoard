@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300');
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300");
 .container {
   max-width: 20rem;
   width: 100%;
@@ -55,8 +55,16 @@
   padding-top: 0.55rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  padding-bottom: 0.48rem;
+  padding-bottom: 0.55rem;
   gap: 0.5rem;
+  border: 0;
+  white-space: nowrap;
+}
+.gogleTab{
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
 }
 .bgroundedDiv {
   background-color: white;
@@ -106,7 +114,6 @@
 .socialMediaDiv {
   gap: 1rem;
   justify-content: center;
- 
 }
 .SocialMediaIcons {
   color: #858585;

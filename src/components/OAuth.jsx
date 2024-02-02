@@ -8,6 +8,7 @@ import Image from "next/image";
 import { CHFlex } from "./CFlex";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/router";
+import LoginPageMobileStyle from "@/modules/login/mobile/LoginMobile.module.css";
 // import {
 //   signInWithEmailAndPassword,
 //   sendPasswordResetEmail,
@@ -107,7 +108,8 @@ import { useRouter } from "next/router";
 //   );
 // }
 
-export default function OAuth() {
+const OAuth = (props) => {
+  const { isMobile } = props;
   const dispatch = useDispatch();
   // const navigate = useNavigate();
   const router = useRouter();
@@ -135,7 +137,32 @@ export default function OAuth() {
       console.log("Could not sign in with google", error);
     }
   };
-  return (
+  return isMobile ? (
+    <button
+      type="button"
+      onClick={handleGoogleClick}
+      className={`${LoginPageMobileStyle.roundedDiv} ${LoginPageMobileStyle.gogleTab}`}
+      
+    >
+      <CHFlex
+        sx={{ justifyContent: "space-between" }}
+        className={` ${LoginPageMobileStyle.roundedDiv}`}
+      >
+        <Image
+          src="/images/google-icon.png"
+          alt="google"
+          width="12"
+          height="12"
+        />
+        <p
+          className={`${LoginPageMobileStyle.text} ${LoginPageMobileStyle.secondaryText}`}
+          style={{ color: "#858585" }}
+        >
+          Sign in with Google
+        </p>
+      </CHFlex>
+    </button>
+  ) : (
     <button
       type="button"
       onClick={handleGoogleClick}
@@ -157,4 +184,5 @@ export default function OAuth() {
       </CHFlex>
     </button>
   );
-}
+};
+export default OAuth;
