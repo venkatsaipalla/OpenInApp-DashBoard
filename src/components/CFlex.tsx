@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import Modal from "react-modal";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 // Import Swiper styles
