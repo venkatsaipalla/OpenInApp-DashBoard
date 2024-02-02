@@ -2,6 +2,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+
+
+
+https://github.com/venkatsaipalla/OpenInApp-DashBoard/assets/72677771/7dd043f6-192f-4fa6-a168-ce5c58f55e2d
+
+
+
 First, run the development server:
 
 ```bash
